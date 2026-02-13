@@ -27,3 +27,16 @@ Nessus often exports long multi-line values (Plugin Output, Description, Solutio
 
 ```bash
 python3 clean.py input.csv output.csv
+```
+
+---
+
+## Example (Large Output)
+
+Update split -l value accordingly.
+
+```bash
+python3 clean.py export.csv clean.csv
+cat export.csv | wc -l
+h=$(head -n1 clean.csv); tail -n +2 clean.csv | split -l 20000 - chunk_ && for f in chunk_*; do { printf "%s\n" "$h"; cat "$f"; } > "$f.csv" && rm "$f"; done
+```
