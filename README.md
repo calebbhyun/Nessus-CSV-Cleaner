@@ -37,6 +37,6 @@ Update split -l value accordingly.
 
 ```bash
 python3 clean.py export.csv clean.csv
-cat export.csv | wc -l
+cat clean.csv | wc -l
 h=$(head -n1 clean.csv); tail -n +2 clean.csv | split -l 20000 - chunk_ && for f in chunk_*; do { printf "%s\n" "$h"; cat "$f"; } > "$f.csv" && rm "$f"; done
 ```
