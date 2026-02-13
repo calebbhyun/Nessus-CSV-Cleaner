@@ -8,10 +8,21 @@ csv.field_size_limit(10**9)
 
 WS = re.compile(r"\s+")
 
+# Excel limit is 32767 → keep safely below it
+MAX_CHARS = 30000
+
 def clean_cell(v: str) -> str:
     if v is None:
         return v
-    return WS.sub(" ", v).strip()
+
+    # collapse whitespace
+    v = WS.sub(" ", v).strip()
+
+    # truncate long values
+    if len(v) > MAX_CHARS:
+        v = v[:MAX_CHARS] + " [TRUNCATED]"
+
+    return v
 
 def main():
     parser = argparse.ArgumentParser(
