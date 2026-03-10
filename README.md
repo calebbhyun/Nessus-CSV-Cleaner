@@ -8,11 +8,11 @@ Nessus often exports long multi-line values (Plugin Output, Description, Solutio
 
 ## Features
 
-- Handles very large Nessus fields (raises CSV size limit)
+- Works with large scan files
+- Handles very large Nessus fields
+- Truncates oversized values to keep output Excel-friendly
 - Removes embedded newlines, tabs, and repeated spaces
 - Preserves valid CSV structure
-- Works with large scan files
-- Simple command-line usage
 
 ---
 
@@ -31,7 +31,7 @@ python3 clean.py input.csv output.csv
 
 ---
 
-## Example (Large Output)
+## Example (Splits large cleaned CSV output into smaller files so they can be opened in Excel)
 
 Update split -l value accordingly.
 
